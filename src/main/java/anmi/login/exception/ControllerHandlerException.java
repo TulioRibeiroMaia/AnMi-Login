@@ -21,6 +21,8 @@ import java.util.List;
 @RestControllerAdvice
 public class ControllerHandlerException {
 
+    private String message;
+
     @Autowired
     private MessageSource messageSource;
 
@@ -72,7 +74,7 @@ public class ControllerHandlerException {
         return new ErrorMessage(
                 HttpStatus.BAD_REQUEST.value(),
                 new Date(),
-                ex.getMessage(),
+                message = ex.getCause() != null ? ex.getCause().getLocalizedMessage() : ex.getMessage(),
                 request.getDescription(false));
     }
 
@@ -82,7 +84,7 @@ public class ControllerHandlerException {
         return new ErrorMessage(
                 HttpStatus.BAD_REQUEST.value(),
                 new Date(),
-                ex.getMessage(),
+                message = ex.getCause() != null ? ex.getCause().getLocalizedMessage() : ex.getMessage(),
                 request.getDescription(false));
     }
 
@@ -92,7 +94,7 @@ public class ControllerHandlerException {
         return new ErrorMessage(
                 HttpStatus.BAD_REQUEST.value(),
                 new Date(),
-                ex.getMessage(),
+                message = ex.getCause() != null ? ex.getCause().getLocalizedMessage() : ex.getMessage(),
                 request.getDescription(false));
     }
 }

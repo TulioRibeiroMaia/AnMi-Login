@@ -23,6 +23,6 @@ public class AuthenticationService implements UserDetailsService {
             return (UserDetails) userRole.get();
         }
         System.out.println(userRole);
-        throw new UsernameNotFoundException("Dados inválidos!");
+        throw new UsernameNotFoundException("Token JWT inválido ou expirado!");
     }
 }
