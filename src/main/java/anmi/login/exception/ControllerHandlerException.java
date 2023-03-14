@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestControllerAdvice
-public class HandlerException {
+public class ControllerHandlerException {
 
     @Autowired
     private MessageSource messageSource;
@@ -72,7 +72,7 @@ public class HandlerException {
         return new ErrorMessage(
                 HttpStatus.BAD_REQUEST.value(),
                 new Date(),
-                ex.getCause().getLocalizedMessage(),
+                ex.getMessage(),
                 request.getDescription(false));
     }
 
@@ -82,7 +82,7 @@ public class HandlerException {
         return new ErrorMessage(
                 HttpStatus.BAD_REQUEST.value(),
                 new Date(),
-                ex.getRootCause().getLocalizedMessage(),
+                ex.getMessage(),
                 request.getDescription(false));
     }
 
@@ -92,7 +92,7 @@ public class HandlerException {
         return new ErrorMessage(
                 HttpStatus.BAD_REQUEST.value(),
                 new Date(),
-                ex.getCause().getLocalizedMessage(),
+                ex.getMessage(),
                 request.getDescription(false));
     }
 }
